@@ -5,13 +5,23 @@
 
 package com.mycompany.trabalhofinal;
 
+import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
+import com.mycompany.trabalhofinal.presenter.PrincipalPresenter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Mario
  */
 public class TrabalhoFinal {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    public static void main(String[] args) throws Exception {
+        try {
+        UsuarioDAO.createTableUsuario();
+        new PrincipalPresenter();
+        }catch (Exception e) {
+                Logger.getLogger(TrabalhoFinal.class.getName()).log(Level.SEVERE, null, e);
+            }
     }
 }
