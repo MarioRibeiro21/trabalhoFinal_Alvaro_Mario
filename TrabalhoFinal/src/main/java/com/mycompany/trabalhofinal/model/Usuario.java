@@ -4,6 +4,8 @@
  */
 package com.mycompany.trabalhofinal.model;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Mario
@@ -16,23 +18,27 @@ public class Usuario {
     private String senha;
     private String email;
     private boolean isAdimin;
+    private String dataCadastro;
 
-    public Usuario(int id, String nome, String email, String login, String senha, boolean isAdimin) {
+    public Usuario(int id, String nome, String email, String login, String senha, boolean isAdimin, String dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.login = login;
         this.senha = senha;
         this.isAdimin = isAdimin;
+        this.dataCadastro = dataCadastro;
     }
 
-    public Usuario(String nome, String email, String login, String senha, boolean isAdimin) {
+    public Usuario(String nome, String email, String login, String senha, boolean isAdimin, String dataCadastro) {
         this.nome = nome;
         this.email = email;
         this.login = login;
         this.senha = senha;
         this.isAdimin = isAdimin;
+        this.dataCadastro = dataCadastro;
     }
+
 
     public Usuario() {
     }
@@ -82,6 +88,13 @@ public class Usuario {
         return this;
     }
 
+    public String getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
     public String getEmail() {
         return email;
     }

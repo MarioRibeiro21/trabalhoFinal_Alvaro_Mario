@@ -1,10 +1,13 @@
 package com.mycompany.trabalhofinal.model;
 
+import com.mycompany.trabalhofinal.state.NotificacaoState;
+
 public class Notificacao {
 
 	private int id;
 	private Usuario usuario;
 	private String mensagem;
+        private NotificacaoState estado;
 
 	public Notificacao( int id, Usuario usuario, String mensagem ) {
 		this.id = id;
@@ -42,5 +45,9 @@ public class Notificacao {
 	public void setMensagem( String mensagem ) {
 		this.mensagem = mensagem;
 	}
+        
+        public void setEstado( NotificacaoState estado ){
+            this.estado = estado;
+        }
 
 }
