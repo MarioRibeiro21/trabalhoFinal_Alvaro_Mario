@@ -1,15 +1,16 @@
-out
-.classpath
-.project
-.settings
-.metadata
-*.log
-*.zip
+**/bin/
+**/target/
+**/.settings/
+**/.project
+**/.classpath
+**/package-lock.json
+.DS_Store
+.attach_pid*
+
+# Compiled class file
 *.class
-*.swp
-target
-classes
-build
-bin
-classes
-*~
+
+# Log file
+*.log
+
+**/application.xml
