@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class ManterUsuarioEdicaoState extends ManterUsuarioState{
     
-    private ValidadorSenha validadorSenha;
-    private UsuarioDAO usuarioDAO;
+    private ValidadorSenha validadorSenha = new ValidadorSenha();
+    private UsuarioDAO usuarioDAO = new UsuarioDAO();
     
     public ManterUsuarioEdicaoState(ManterUsuarioPresenter manterUsuario, Usuario usuario) {
         super(manterUsuario);
