@@ -8,6 +8,7 @@ import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
 import com.mycompany.trabalhofinal.model.Usuario;
 import com.mycompany.trabalhofinal.observer.IObservable;
 import com.mycompany.trabalhofinal.observer.IObserver;
+import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioCadastroState;
 import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioEdicaoState;
 import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioState;
 import com.mycompany.trabalhofinal.view.ManterUsuarioView;
@@ -74,6 +75,7 @@ public class ManterUsuarioPresenter implements IObservable {
 	}
 
 	public void incluir() {
+            new ManterUsuarioCadastroState(this);
 
 	}
 
