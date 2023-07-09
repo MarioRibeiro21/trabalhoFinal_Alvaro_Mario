@@ -53,9 +53,9 @@ public class LoginPresenter implements IObservable {
     private void cadastrar(JDesktopPane desktop) {
         try {
             if (usuarioDAO.findAll().isEmpty())
-                new CadastroPresenter(desktop, null, true, true);
+                new ManterUsuarioPresenter(desktop, null, true, true);
             else
-                new CadastroPresenter(desktop, null, false, false);
+                new ManterUsuarioPresenter(desktop, null, false, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(loginView, "Erro ao cadastrar: " + e.getMessage());
         }

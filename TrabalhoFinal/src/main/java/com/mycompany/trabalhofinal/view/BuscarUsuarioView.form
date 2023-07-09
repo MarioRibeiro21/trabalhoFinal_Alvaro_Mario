@@ -41,14 +41,19 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jBtnBuscar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jBtnNovo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jBtnVisualizar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="jEditar1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jBtnFechar" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -69,14 +74,15 @@
                   <Component id="cmbxCampo" alignment="1" max="32767" attributes="0"/>
                   <Component id="jBtnBuscar" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="268" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jBtnNovo" pref="28" max="32767" attributes="0"/>
-                  <Component id="jBtnVisualizar" alignment="1" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jBtnNovo" alignment="1" pref="36" max="32767" attributes="0"/>
                   <Component id="jBtnPermissao" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jBtnVisualizar" alignment="1" max="32767" attributes="0"/>
                   <Component id="jBtnFechar" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jEditar1" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -160,6 +166,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnFecharActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -192,6 +201,17 @@
           <Font name="Verdana" size="12" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Permiss&#xf5;es"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jEditar1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f8" green="f8" red="f8" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Verdana" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -25,8 +25,7 @@ public class PrincipalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem2 = new javax.swing.JMenuItem();
-        
+        setTitle("Trabalho final");
         jDesktopPane = new javax.swing.JDesktopPane();
         lblUsuarioLogado = new javax.swing.JLabel();
         btnNotificacao = new javax.swing.JButton();
@@ -35,8 +34,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuCadastrar = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuBuscar = new javax.swing.JMenuItem();
-
-        jMenuItem2.setText("jMenuItem2");
+        jMenuAcao = new javax.swing.JMenu();
+        jMenuAlterar1 = new javax.swing.JMenuItem();
+        jMenuNotificacao2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trabalho final");
@@ -76,6 +76,16 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuUsuario.add(jMenuBuscar);
 
         jMenuBar.add(jMenuUsuario);
+
+        jMenuAcao.setText("Ações");
+
+        jMenuAlterar1.setText("Alterar dados");
+        jMenuAcao.add(jMenuAlterar1);
+
+        jMenuNotificacao2.setText("Enviar notificação");
+        jMenuAcao.add(jMenuNotificacao2);
+
+        jMenuBar.add(jMenuAcao);
 
         setJMenuBar(jMenuBar);
 
@@ -147,13 +157,39 @@ public class PrincipalView extends javax.swing.JFrame {
         });
     }
 
+    public JMenu getjMenuAcao() {
+        return jMenuAcao;
+    }
+
+    public void setjMenuAcao(JMenu jMenuAcao) {
+        this.jMenuAcao = jMenuAcao;
+    }
+
+    public JMenuItem getjMenuAlterar1() {
+        return jMenuAlterar1;
+    }
+
+    public void setjMenuAlterar1(JMenuItem jMenuAlterar1) {
+        this.jMenuAlterar1 = jMenuAlterar1;
+    }
+
+    public JMenuItem getjMenuNotificacao2() {
+        return jMenuNotificacao2;
+    }
+
+    public void setjMenuNotificacao2(JMenuItem jMenuNotificacao2) {
+        this.jMenuNotificacao2 = jMenuNotificacao2;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNotificacao;
     private javax.swing.JDesktopPane jDesktopPane;
+    private javax.swing.JMenu jMenuAcao;
+    private javax.swing.JMenuItem jMenuAlterar1;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuBuscar;
     private javax.swing.JMenuItem jMenuCadastrar;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuNotificacao2;
     private javax.swing.JMenu jMenuUsuario;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblUsuarioLogado;

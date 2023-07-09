@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableModel;
 
 import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
 import com.mycompany.trabalhofinal.model.Usuario;
+import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioEdicaoState;
+import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioVisualizacaoState;
 import com.mycompany.trabalhofinal.view.BuscarUsuarioView;
 
 
@@ -55,11 +57,20 @@ public class BuscarUsuarioPresenter {
 				Logger.getLogger( BuscarUsuarioPresenter.class.getName() ).log( Level.SEVERE, null, ex );
 			}
 		} );
-
+                
+                   buscarUsuarioView.getjEditar1().addActionListener((e)->{
+                    try{
+                        editar(desktop);
+                    }catch ( Exception ex ) {
+				Logger.getLogger( BuscarUsuarioPresenter.class.getName() ).log( Level.SEVERE, null, ex );
+			}
+                });
                 
                 buscarUsuarioView.getjBtnFechar().addActionListener( ( e ) -> {
 			fechar();
 		} );
+                
+             
 	}
 
 	private void buscar() throws Exception {
@@ -91,7 +102,7 @@ public class BuscarUsuarioPresenter {
 	}
 
 	private void cadastrar( JDesktopPane desktop ) throws IOException {
-		new CadastroPresenter( desktop, null, false, true );
+		new ManterUsuarioPresenter( desktop, null, false, true );
 	}
 
 	private void visualizar( JDesktopPane desktop ) throws Exception {
@@ -101,10 +112,21 @@ public class BuscarUsuarioPresenter {
 			JOptionPane.showMessageDialog( buscarUsuarioView, "É necessário selecionar uma linha primeiro" );
 		} else {
 			var id = Integer.valueOf( buscarUsuarioView.getjTable().getValueAt( linha, 0 ).toString() );
-			new VisualizarUsuarioPresenter( desktop, usuarioDAO.getById( id ) );
+                        var usuario = usuarioDAO.getById( id );
+                       new ManterUsuarioVisualizacaoState( new  ManterUsuarioPresenter( desktop, usuario, false, usuario.isAdimin() ));
 		}
 	}
         
+        private void editar( JDesktopPane desktop )throws Exception {
+            var linha = buscarUsuarioView.getjTable().getSelectedRow();
+            if( linha == -1 ) {
+                    JOptionPane.showMessageDialog( buscarUsuarioView, "É necessário selecionar uma linha primeiro" );
+            } else {
+               	var id = Integer.valueOf( buscarUsuarioView.getjTable().getValueAt( linha, 0 ).toString() );
+                var usuario= usuarioDAO.getById( id );
+                new ManterUsuarioPresenter(desktop, usuario, false, usuario.isAdimin());
+            }
+        }
 
 	private void fechar() {
 		buscarUsuarioView.dispose();

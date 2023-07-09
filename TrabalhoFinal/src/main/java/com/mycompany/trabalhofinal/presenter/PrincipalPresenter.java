@@ -61,7 +61,7 @@ public class PrincipalPresenter implements IObserver {
     }
     
     private void cadastrar() throws IOException {
-        new CadastroPresenter(principalView.getjDesktopPane(), null, false, true);   
+        new ManterUsuarioPresenter(principalView.getjDesktopPane(), null, false, true);   
     }
     
     private void buscar() throws IOException {  
