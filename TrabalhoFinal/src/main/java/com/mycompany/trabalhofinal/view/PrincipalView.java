@@ -26,6 +26,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem2 = new javax.swing.JMenuItem();
+        
         jDesktopPane = new javax.swing.JDesktopPane();
         lblUsuarioLogado = new javax.swing.JLabel();
         btnNotificacao = new javax.swing.JButton();
@@ -38,7 +39,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sofware para acesso a Bancos de Imagens");
+        setTitle("Trabalho final");
         setResizable(false);
 
         jDesktopPane.setBackground(new java.awt.Color(51, 51, 51));

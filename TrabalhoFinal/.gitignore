@@ -1,0 +1,16 @@
+**/bin/
+**/target/
+**/.settings/
+**/.project
+**/.classpath
+**/package-lock.json
+.DS_Store
+.attach_pid*
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+**/application.xml

@@ -90,6 +90,10 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="setTitle(&quot;Trabalho final&quot;);"/>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="PrincipalView_jDesktopPane"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
