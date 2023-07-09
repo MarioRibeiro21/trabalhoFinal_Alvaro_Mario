@@ -13,7 +13,7 @@ import com.mycompany.trabalhofinal.model.Usuario;
 
 /**
  *
- * @author Mario
+ * @author Mario e Álvaro
  */
 public class UsuarioDAO {
 
@@ -21,7 +21,7 @@ public class UsuarioDAO {
 		Connection conn = null;
 	
 		try {
-			String SQL = "CREATE TABLE IF NOT EXISTS Usuario(" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "nome VARCHAR NOT NULL," + "login VARCHAR NOT NULL UNIQUE, " + "email VARCHAR NOT NULL UNIQUE," + "senha VARCHAR NOT NULL, " + "isAdmin INT DEFAULT 0 " + ")";
+			String SQL = "CREATE TABLE IF NOT EXISTS Usuario(" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "nome VARCHAR NOT NULL," + "login VARCHAR NOT NULL UNIQUE, " + "email VARCHAR NOT NULL UNIQUE," + "senha VARCHAR NOT NULL, " + "isAdmin INT DEFAULT 0 " + "dataCadastro TEXT " +")";
 
 			conn = ConnectionSQLite.connect();
 			Statement stmt = conn.createStatement();
@@ -57,8 +57,9 @@ public class UsuarioDAO {
 				var isAdmin = rs.getBoolean( "isAdmin" );
 				var nome = rs.getString( "nome" );
 				var email = rs.getString( "email" );
+				var dataCadastro = rs.getString( "dataCadastro" );
 
-				retorno = new Usuario( idUsuario, nome, email, login, senha, isAdmin );
+				retorno = new Usuario( idUsuario, nome, email, login, senha, isAdmin, dataCadastro );
 			}
 
 			return retorno;
@@ -96,6 +97,7 @@ public class UsuarioDAO {
 				retorno.setAdimin( rs.getBoolean( "isAdmin" ) );
 				retorno.setEmail( rs.getString( "email" ) );
 				retorno.setNome( rs.getString( "nome" ) );
+                                retorno.setDataCadastro(rs.getString("dataCadastro"));
 			}
 
 			return retorno;
@@ -124,7 +126,7 @@ public class UsuarioDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while( rs.next() ) {
-				retorno.add( new Usuario( rs.getInt( "id" ), rs.getString( "nome" ), rs.getString( "email" ), rs.getString( "login" ), rs.getString( "senha" ), rs.getBoolean( "isAdmin" ) ) );
+				retorno.add( new Usuario( rs.getInt( "id" ), rs.getString( "nome" ), rs.getString( "email" ), rs.getString( "login" ), rs.getString( "senha" ), rs.getBoolean( "isAdmin" ), rs.getString( "dataCadastro" )  ) );
 			}
 
 			return retorno;
@@ -160,6 +162,7 @@ public class UsuarioDAO {
 				retorno.setAdimin( rs.getBoolean( "isAdmin" ) );
 				retorno.setEmail( rs.getString( "email" ) );
 				retorno.setNome( rs.getString( "nome" ) );
+                                retorno.setDataCadastro(rs.getString("dataCadastro"));
 			}
 
 			return retorno;
@@ -178,7 +181,7 @@ public class UsuarioDAO {
 		PreparedStatement ps = null;
 		try {
 
-			String SQL = "INSERT INTO Usuario(nome, login, email, senha, isAdmin) " + " VALUES(?, ?, ?, ?, ?); ";
+			String SQL = "INSERT INTO Usuario(nome, login, email, senha, isAdmin, dataCadastro) " + " VALUES(?, ?, ?, ?, ?, datetime('localtime')); ";
 			conn = ConnectionSQLite.connect();
 			ps = conn.prepareStatement( SQL );
 			ps.setString( 1, usuario.getNome() );
@@ -269,8 +272,9 @@ public class UsuarioDAO {
 				var login = rs.getString( "login" );
 				var senha = rs.getString( "senha" );
 				var isAdmin = rs.getBoolean( "isAdmin" );
+				var dataCadastro = rs.getString( "dataCadastro" );
 
-				usuarios.add( new Usuario( id, nome, email, login, senha, isAdmin ) );
+				usuarios.add( new Usuario( id, nome, email, login, senha, isAdmin, dataCadastro ) );
 			}
 
 			return usuarios;

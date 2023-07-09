@@ -10,6 +10,7 @@ import com.mycompany.trabalhofinal.observer.IObservable;
 import com.mycompany.trabalhofinal.observer.IObserver;
 import com.mycompany.trabalhofinal.view.CadastroView;
 import com.pss.senha.validacao.ValidadorSenha;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
@@ -92,9 +93,9 @@ public class CadastroPresenter implements IObservable {
                     try {
                         
                         if( admin )
-                            usuarioDAO.insert( new Usuario( nome, email, nomeUsuario, senha, true ) );
+                            usuarioDAO.insert( new Usuario( nome, email, nomeUsuario, senha, true, LocalDateTime.now().toString() ) );
                         else
-                            usuarioDAO.insert( new Usuario( nome, email, nomeUsuario, senha, false ) );
+                            usuarioDAO.insert( new Usuario( nome, email, nomeUsuario, senha, false, LocalDateTime.now().toString() ) );
                         
                         JOptionPane.showMessageDialog( cadastroView, "Cadastro realizado com sucesso!" );
 			cadastroView.dispose();
@@ -125,9 +126,9 @@ public class CadastroPresenter implements IObservable {
                 } else {
                     try {
                         if( admin )
-                            usuarioDAO.edit( new Usuario( nome, email, nomeUsuario, senha, true ) );
+                            usuarioDAO.edit( new Usuario( nome, email, nomeUsuario, senha, true, LocalDateTime.now().toString() ) );
                         else
-                            usuarioDAO.edit( new Usuario( nome, email, nomeUsuario, senha, false ) );
+                            usuarioDAO.edit( new Usuario( nome, email, nomeUsuario, senha, false, LocalDateTime.now().toString() ) );
                         
                         JOptionPane.showMessageDialog( cadastroView, "Usuário editado com sucesso!" );
 			cadastroView.dispose();

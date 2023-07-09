@@ -1,5 +1,6 @@
 package com.mycompany.trabalhofinal.presenter;
 
+import com.mycompany.trabalhofinal.DAO.implement.NotificacaoDAO;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,6 +20,7 @@ public class BuscarUsuarioPresenter {
 
 	private BuscarUsuarioView buscarUsuarioView;
 	private UsuarioDAO usuarioDAO;
+        private NotificacaoDAO notificacaoDAO;
 	private List<Usuario> usuarios;
 
 	public BuscarUsuarioPresenter( JDesktopPane desktop ) throws IOException {
