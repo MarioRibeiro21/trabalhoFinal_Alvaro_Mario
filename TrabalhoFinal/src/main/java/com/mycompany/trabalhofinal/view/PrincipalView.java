@@ -36,10 +36,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBuscar = new javax.swing.JMenuItem();
         jMenuAcao = new javax.swing.JMenu();
         jMenuAlterar1 = new javax.swing.JMenuItem();
-        jMenuNotificacao2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Trabalho final");
+        setTitle("Sofware para acesso a Bancos de Notificações");
         setResizable(false);
 
         jDesktopPane.setBackground(new java.awt.Color(51, 51, 51));
@@ -59,7 +58,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         btnNotificacao.setBackground(new java.awt.Color(248, 248, 248));
         btnNotificacao.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        btnNotificacao.setText("Notificações (0)");
+        btnNotificacao.setText("Notificações");
 
         jMenuUsuario.setText("Admin");
 
@@ -81,9 +80,6 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuAlterar1.setText("Alterar dados");
         jMenuAcao.add(jMenuAlterar1);
-
-        jMenuNotificacao2.setText("Enviar notificação");
-        jMenuAcao.add(jMenuNotificacao2);
 
         jMenuBar.add(jMenuAcao);
 
@@ -173,13 +169,6 @@ public class PrincipalView extends javax.swing.JFrame {
         this.jMenuAlterar1 = jMenuAlterar1;
     }
 
-    public JMenuItem getjMenuNotificacao2() {
-        return jMenuNotificacao2;
-    }
-
-    public void setjMenuNotificacao2(JMenuItem jMenuNotificacao2) {
-        this.jMenuNotificacao2 = jMenuNotificacao2;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNotificacao;
@@ -189,7 +178,6 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuBuscar;
     private javax.swing.JMenuItem jMenuCadastrar;
-    private javax.swing.JMenuItem jMenuNotificacao2;
     private javax.swing.JMenu jMenuUsuario;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblUsuarioLogado;

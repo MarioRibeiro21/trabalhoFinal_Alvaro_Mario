@@ -27,7 +27,6 @@ public class ManterUsuarioPresenter implements IObservable {
 	private ManterUsuarioView cadastroView;
 	
         private final List<IObserver> observers;
-        private ManterUsuarioState state;
 
 	public ManterUsuarioPresenter( JDesktopPane desktop, Usuario usuario, boolean first, boolean admin ) {
             observers = new ArrayList<>();

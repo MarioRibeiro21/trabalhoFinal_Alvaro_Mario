@@ -24,7 +24,8 @@ public class ManterUsuarioCadastroState extends ManterUsuarioState{
         cadastro();
     }
     
-    private void cadastro(){
+    @Override
+    public void cadastro(){
                 
 
                 var cadastroView = manterUsuario.getCadastroView();

@@ -5,6 +5,7 @@
 
 package com.mycompany.trabalhofinal;
 
+import com.mycompany.trabalhofinal.DAO.implement.NotificacaoDAO;
 import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
 import com.mycompany.trabalhofinal.presenter.PrincipalPresenter;
 import java.util.logging.Level;
@@ -19,6 +20,7 @@ public class TrabalhoFinal {
     public static void main(String[] args) throws Exception {
         try {
         UsuarioDAO.createTableUsuario();
+        NotificacaoDAO.createTableNotificacao();
         new PrincipalPresenter();
         }catch (Exception e) {
                 Logger.getLogger(TrabalhoFinal.class.getName()).log(Level.SEVERE, null, e);

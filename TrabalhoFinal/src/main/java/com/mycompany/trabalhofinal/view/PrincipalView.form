@@ -36,11 +36,6 @@
                 <Property name="text" type="java.lang.String" value="Alterar dados"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuNotificacao2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Enviar notifica&#xe7;&#xe3;o"/>
-              </Properties>
-            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
@@ -135,7 +130,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Verdana" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Notifica&#xe7;&#xf5;es (0)"/>
+        <Property name="text" type="java.lang.String" value="Notifica&#xe7;&#xf5;es"/>
       </Properties>
     </Component>
   </SubComponents>

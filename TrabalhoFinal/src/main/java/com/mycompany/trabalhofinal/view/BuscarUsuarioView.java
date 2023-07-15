@@ -40,6 +40,7 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Gerenciar Usuários");
+        setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(248, 248, 248));
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N

@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 
 import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
 import com.mycompany.trabalhofinal.model.Usuario;
-import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioEdicaoState;
 import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioVisualizacaoState;
 import com.mycompany.trabalhofinal.view.BuscarUsuarioView;
 

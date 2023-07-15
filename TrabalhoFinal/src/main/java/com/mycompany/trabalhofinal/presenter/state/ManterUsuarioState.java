@@ -19,7 +19,7 @@ public abstract class ManterUsuarioState {
     public ManterUsuarioState(ManterUsuarioPresenter manterUsuario) {
         this.manterUsuario = manterUsuario;
     }
-    public void incluir() throws Exception{
+    public void cadastro() throws Exception{
         throw new Exception("Ação não permitida aqui!");
     }
     
