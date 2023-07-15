@@ -1,17 +1,18 @@
 package com.mycompany.trabalhofinal.view;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 
-public class CadastroView extends javax.swing.JInternalFrame {
+public class ManterUsuarioView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastroView
      */
-    public CadastroView() {
+    public ManterUsuarioView() {
         initComponents();
     }
 
@@ -139,6 +140,13 @@ public class CadastroView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    public void setjLabel5(JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

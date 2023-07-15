@@ -34,11 +34,13 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jBtnPermissao = new javax.swing.JButton();
+        jEditar1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(248, 248, 248));
         setClosable(true);
         setIconifiable(true);
         setTitle("Gerenciar Usuários");
+        setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(248, 248, 248));
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -63,6 +65,11 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         jBtnFechar.setBackground(new java.awt.Color(248, 248, 248));
         jBtnFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jBtnFechar.setText("Fechar");
+        jBtnFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnFecharActionPerformed(evt);
+            }
+        });
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,6 +100,10 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         jBtnPermissao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jBtnPermissao.setText("Permissões");
 
+        jEditar1.setBackground(new java.awt.Color(248, 248, 248));
+        jEditar1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jEditar1.setText("Editar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,12 +121,16 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
                                 .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jBtnBuscar))
-                            .addComponent(jScrollPane1))
-                        .addContainerGap(10, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addGap(87, 87, 87)))
+                        .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnVisualizar)
+                        .addGap(12, 12, 12)
+                        .addComponent(jEditar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,19 +146,24 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbxCampo)
                     .addComponent(jBtnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(jBtnVisualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtnPermissao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtnFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnNovo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(jBtnPermissao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnVisualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnFechar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jEditar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnFecharActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnFecharActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -153,6 +173,7 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBtnNovo;
     private javax.swing.JButton jBtnPermissao;
     private javax.swing.JButton jBtnVisualizar;
+    private javax.swing.JButton jEditar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
@@ -190,6 +211,10 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
     public JButton getjBtnPermissao() {
         return jBtnPermissao;
     }    
+
+    public JButton getjEditar1() {
+        return jEditar1;
+    }
     
     
     
