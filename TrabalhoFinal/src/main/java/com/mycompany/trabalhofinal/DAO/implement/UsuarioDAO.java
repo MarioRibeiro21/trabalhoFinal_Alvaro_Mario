@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.mycompany.trabalhofinal.factory.ConnectionSQLite;
 import com.mycompany.trabalhofinal.model.Usuario;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -21,7 +22,7 @@ public class UsuarioDAO {
 		Connection conn = null;
 	
 		try {
-			String SQL = "CREATE TABLE IF NOT EXISTS Usuario(" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "nome VARCHAR NOT NULL," + "login VARCHAR NOT NULL UNIQUE, " + "email VARCHAR NOT NULL UNIQUE," + "senha VARCHAR NOT NULL, " + "isAdmin INT DEFAULT 0 " + ")";
+			String SQL = "CREATE TABLE IF NOT EXISTS Usuario(" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "nome VARCHAR NOT NULL," + "login VARCHAR NOT NULL UNIQUE, " + "email VARCHAR NOT NULL UNIQUE," + "senha VARCHAR NOT NULL, " + "isAdmin INT DEFAULT 0, " + "data VARCHAR " + ")";
 
 			conn = ConnectionSQLite.connect();
 			Statement stmt = conn.createStatement();
@@ -124,7 +125,7 @@ public class UsuarioDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while( rs.next() ) {
-				retorno.add( new Usuario( rs.getInt( "id" ), rs.getString( "nome" ), rs.getString( "email" ), rs.getString( "login" ), rs.getString( "senha" ), rs.getBoolean( "isAdmin" ) ) );
+				retorno.add( new Usuario( rs.getInt( "id" ), rs.getString( "nome" ), rs.getString( "email" ), rs.getString( "login" ), rs.getString( "senha" ), rs.getBoolean( "isAdmin" ), LocalDateTime.parse(rs.getString( "data" ))) );
 			}
 
 			return retorno;
@@ -160,6 +161,7 @@ public class UsuarioDAO {
 				retorno.setAdimin( rs.getBoolean( "isAdmin" ) );
 				retorno.setEmail( rs.getString( "email" ) );
 				retorno.setNome( rs.getString( "nome" ) );
+                                retorno.setData(LocalDateTime.parse(rs.getString( "data" )));
 			}
 
 			return retorno;
@@ -178,7 +180,7 @@ public class UsuarioDAO {
 		PreparedStatement ps = null;
 		try {
 
-			String SQL = "INSERT INTO Usuario(nome, login, email, senha, isAdmin) " + " VALUES(?, ?, ?, ?, ?); ";
+			String SQL = "INSERT INTO Usuario(nome, login, email, senha, isAdmin, data) " + " VALUES(?, ?, ?, ?, ?,?); ";
 			conn = ConnectionSQLite.connect();
 			ps = conn.prepareStatement( SQL );
 			ps.setString( 1, usuario.getNome() );
@@ -186,6 +188,7 @@ public class UsuarioDAO {
 			ps.setString( 3, usuario.getEmail() );
 			ps.setString( 4, usuario.getSenha() );
 			ps.setBoolean( 5, usuario.isAdimin() );
+                        ps.setString(6, LocalDateTime.now().toString());
 			ps.executeUpdate();
 
 		} catch ( Exception e ) {

@@ -135,7 +135,7 @@ public class BuscarUsuarioPresenter {
 
 		buscarUsuarioView.getjTable().setSelectionMode( ListSelectionModel.SINGLE_SELECTION );
 
-		var tabela = new DefaultTableModel( new Object[][]{}, new String[]{ "Id", "Nome", "Nome de Usuário", "Tipo" } ) {
+		var tabela = new DefaultTableModel( new Object[][]{}, new String[]{ "Id", "Nome", "Nome de Usuário", "Data inserção", "Tipo" } ) {
 
 			@Override
 			public boolean isCellEditable( final int row, final int column ) {
@@ -148,7 +148,7 @@ public class BuscarUsuarioPresenter {
 		for( Usuario u : usuarios ) {
 			var tipo = u.isAdimin() ? "Administrador" : "Usuário";
 
-			tabela.addRow( new Object[]{ u.getId(), u.getNome(), u.getLogin(), tipo } );
+			tabela.addRow( new Object[]{ u.getId(), u.getNome(), u.getLogin(), u.getData(), tipo } );
 		}
 
 		buscarUsuarioView.getjTable().setModel( tabela );

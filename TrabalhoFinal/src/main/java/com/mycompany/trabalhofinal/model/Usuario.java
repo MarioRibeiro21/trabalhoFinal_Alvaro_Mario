@@ -4,6 +4,8 @@
  */
 package com.mycompany.trabalhofinal.model;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Mario
@@ -16,6 +18,7 @@ public class Usuario {
     private String senha;
     private String email;
     private boolean isAdimin;
+    private LocalDateTime data;
 
     public Usuario(int id, String nome, String email, String login, String senha, boolean isAdimin) {
         this.id = id;
@@ -36,6 +39,27 @@ public class Usuario {
 
     public Usuario() {
     }
+
+    public Usuario(int id, String nome, String login, String senha, String email, boolean isAdimin, LocalDateTime data) {
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.email = email;
+        this.isAdimin = isAdimin;
+        this.data = data;
+    }
+
+
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+    
 
     public String getNome() {
         return nome;
