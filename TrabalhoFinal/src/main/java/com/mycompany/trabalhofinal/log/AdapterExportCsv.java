@@ -54,7 +54,6 @@ public class AdapterExportCsv implements IAdapterExport {
         try {
             reader = new CSVReader(new FileReader("log.csv"));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
 
         if (reader == null) {
