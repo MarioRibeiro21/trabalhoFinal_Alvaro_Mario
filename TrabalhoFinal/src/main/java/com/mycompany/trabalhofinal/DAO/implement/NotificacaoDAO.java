@@ -233,4 +233,75 @@ public class NotificacaoDAO {
 
         }
     }
+    
+    public int countNotificacoesPendenteByUsuario(int idUsuario) throws Exception {
+        int qtdPendentes;
+        Connection conn = null;
+        Statement stmt = null;
+
+        PreparedStatement ps = null;
+        try {
+
+            String SQL = "SELECT count(1) FROM Notificacao n " + " WHERE n.id_usuario = ? and n.visualizada= 0;";
+
+            conn = ConnectionSQLite.connect();
+            stmt = conn.createStatement();
+
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, idUsuario);
+            ResultSet rs = ps.executeQuery();
+
+            Usuario u = new Usuario();
+            qtdPendentes= (rs.getInt(1));
+
+            stmt.close();
+            conn.close();
+
+            return qtdPendentes;
+
+        } catch (Exception e) {
+            throw new Exception("Erro ao buscar");
+        } finally {
+            ps.close();
+            conn.close();
+            stmt.close();
+
+        }
+    }
+    
+    public int countNotificacoesVisualizadasByUsuario(int idUsuario) throws Exception {
+        int qtdPendentes;
+        Connection conn = null;
+        Statement stmt = null;
+
+        PreparedStatement ps = null;
+        try {
+
+            String SQL = "SELECT count(1) FROM Notificacao n " + " WHERE n.id_usuario = ? and n.visualizada= 1;";
+
+            conn = ConnectionSQLite.connect();
+            stmt = conn.createStatement();
+
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, idUsuario);
+            ResultSet rs = ps.executeQuery();
+
+            Usuario u = new Usuario();
+            qtdPendentes= (rs.getInt(1));
+
+            stmt.close();
+            conn.close();
+
+            return qtdPendentes;
+
+        } catch (Exception e) {
+            throw new Exception("Erro ao buscar");
+        } finally {
+            ps.close();
+            conn.close();
+            stmt.close();
+
+        }
+    }
+    
 }

@@ -7,6 +7,8 @@ package com.mycompany.trabalhofinal.presenter;
 import com.mycompany.trabalhofinal.DAO.implement.NotificacaoDAO;
 import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
 import com.mycompany.trabalhofinal.command.ComandoVisualizar;
+import com.mycompany.trabalhofinal.log.AdapterExportJson;
+import com.mycompany.trabalhofinal.log.IAdapterExport;
 import com.mycompany.trabalhofinal.model.Notificacao;
 import com.mycompany.trabalhofinal.model.Usuario;
 import com.mycompany.trabalhofinal.presenter.state.ManterNotificacaoCadastroState;
@@ -32,19 +34,26 @@ public class NotificacaoPresenter {
     private NotificacaoView view;
     private NotificacaoDAO dao;
     private List<Notificacao> notificacoes;
+    private Usuario usuarioLogado;
+    private IAdapterExport adapter;
 
-    public NotificacaoPresenter(JDesktopPane desktop, int idUsuarioLogado, boolean isAdmin) throws IOException, Exception {
-        init(desktop, idUsuarioLogado, isAdmin);
+    public NotificacaoPresenter(JDesktopPane desktop, Usuario usuario) throws IOException, Exception {
+        this.usuarioLogado=usuario;
+        init(desktop);
     }
 
-    private void init(JDesktopPane desktop, int idUsuarioLogado, boolean isAdmin) throws Exception {
+    private void init(JDesktopPane desktop) throws Exception {
         view = new NotificacaoView();
         dao = new NotificacaoDAO();
 
         desktop.add(view);
         view.setVisible(true);
 
-        buscarNotificacoes(idUsuarioLogado);
+        buscarNotificacoes(usuarioLogado.getId());
+        
+        if(!usuarioLogado.isAdimin()){
+            view.getjBnovaNotificacao().setEnabled(false);
+        }
 
         view.getjBvisualizarNotificacao().addActionListener((e) -> {
             try {
@@ -72,16 +81,18 @@ public class NotificacaoPresenter {
         } else {
             var id = Integer.valueOf(view.getjTnotificacoes().getValueAt(linha, 0).toString());
             var notificacao = dao.getById(id);
-            var manter = new ManterNotificacaoPresenter(desktop, notificacao, null);
+            var manter = new ManterNotificacaoPresenter(desktop, notificacao, null,usuarioLogado);
             manter.setEstado(new ManterNotificacaoVisualizacaoState(manter, notificacao));
             notificacao.setComando(new ComandoVisualizar(notificacao));
             notificacao.executarComando();
             manter.init(desktop, notificacao);
+            adapter = new AdapterExportJson();
+            adapter.escrever(usuarioLogado, "VISUALIZACAO_MENSAGEM", notificacao.getUsuario().getNome());
         }
     }
 
     private void criarMensagem(JDesktopPane desktop) throws Exception {
-        var manter = new ManterNotificacaoPresenter(desktop, null, null);
+        var manter = new ManterNotificacaoPresenter(desktop, null, null,usuarioLogado);
         manter.setEstado(new ManterNotificacaoCadastroState(manter));
         manter.init(desktop, null);
     }

@@ -15,7 +15,13 @@
             <groupId>com.github.claytonfraga</groupId>
             <artifactId>validadorsenha</artifactId>
             <version>master-2acdc79088-1</version>
-		</dependency>
+	</dependency>
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.3</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <repositories>
 		<repository>

@@ -6,6 +6,8 @@ package com.mycompany.trabalhofinal.presenter;
 
 import com.mycompany.trabalhofinal.DAO.implement.NotificacaoDAO;
 import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
+import com.mycompany.trabalhofinal.log.AdapterExportJson;
+import com.mycompany.trabalhofinal.log.IAdapterExport;
 import com.mycompany.trabalhofinal.model.Notificacao;
 import com.mycompany.trabalhofinal.model.Usuario;
 import com.mycompany.trabalhofinal.observer.IObservable;
@@ -31,9 +33,11 @@ public class ManterNotificacaoPresenter implements IObservable {
     private NotificacaoDAO dao;
     private Notificacao notificacao;
     private ManterNotificacaoState estado;
+    private Usuario usuarioLogado;
 
-    public ManterNotificacaoPresenter(JDesktopPane desktop, Notificacao notificacao, ManterNotificacaoState estado) {
+    public ManterNotificacaoPresenter(JDesktopPane desktop, Notificacao notificacao, ManterNotificacaoState estado, Usuario usuarioLogado) {
         this.notificacao=notificacao;
+        this.usuarioLogado= usuarioLogado;
         view = new ManterNotificacaoView();
     }
 
@@ -41,7 +45,6 @@ public class ManterNotificacaoPresenter implements IObservable {
         
         
         dao = new NotificacaoDAO();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
                 
         desktop.add(view);
 
@@ -80,6 +83,10 @@ public class ManterNotificacaoPresenter implements IObservable {
         }
         
       dao.insert(new Notificacao( usuario, mensagem));
+      
+      IAdapterExport adapter = new AdapterExportJson();
+      adapter.escrever(usuarioLogado, "VISUALIZACAO_MENSAGEM", usuario.getNome());
+
       
       JOptionPane.showMessageDialog( view, "mensagem enviada com sucesso!" );   
         
