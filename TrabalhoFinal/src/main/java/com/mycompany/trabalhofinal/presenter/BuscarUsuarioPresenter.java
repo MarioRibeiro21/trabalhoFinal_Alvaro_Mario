@@ -12,6 +12,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
+import com.mycompany.trabalhofinal.log.AdapterExportCsv;
 import com.mycompany.trabalhofinal.log.AdapterExportJson;
 import com.mycompany.trabalhofinal.log.IAdapterExport;
 import com.mycompany.trabalhofinal.model.Usuario;
@@ -130,6 +131,8 @@ public class BuscarUsuarioPresenter {
             new ManterUsuarioVisualizacaoState(new ManterUsuarioPresenter(desktop, usuario, false, this.usuarioLogado));
             adapter = new AdapterExportJson();
             adapter.escrever(this.usuarioLogado, "VISUALIZACAO", usuario.getNome());
+            adapter = new AdapterExportCsv();
+            adapter.escrever(this.usuarioLogado, "VISUALIZACAO", usuario.getNome());
         }
     }
 
@@ -154,6 +157,8 @@ public class BuscarUsuarioPresenter {
             var nome = usuarioDAO.getById(id).getNome();
             usuarioDAO.delete(id);
             adapter = new AdapterExportJson();
+            adapter.escrever(this.usuarioLogado, "EXCLUSAO", nome);
+            adapter = new AdapterExportCsv();
             adapter.escrever(this.usuarioLogado, "EXCLUSAO", nome);
             JOptionPane.showMessageDialog( buscarUsuarioView, "Usuário excluído com sucesso!" );
              buscar();

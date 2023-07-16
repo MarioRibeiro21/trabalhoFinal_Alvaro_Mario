@@ -4,6 +4,7 @@
  */
 package com.mycompany.trabalhofinal.presenter;
 
+import com.mycompany.trabalhofinal.log.AdapterExportCsv;
 import com.mycompany.trabalhofinal.log.AdapterExportJson;
 import com.mycompany.trabalhofinal.log.IAdapterExport;
 import com.mycompany.trabalhofinal.model.Usuario;
@@ -58,7 +59,7 @@ public class ManterUsuarioPresenter implements IObservable {
             cadastroView.getjTxtFUsername().setText(usuario.getLogin());
             cadastroView.getjPassFSenha().setText(usuario.getSenha());
             cadastroView.getjRBtnAdmin().setSelected(usuario.isAdimin());
-            
+
             if (!usuarioLogado.isAdimin()) {
                 cadastroView.getjRBtnAdmin().setSelected(false);
                 cadastroView.getjRBtnAdmin().setEnabled(false);
@@ -101,12 +102,16 @@ public class ManterUsuarioPresenter implements IObservable {
         new ManterUsuarioCadastroState(this);
         adapter = new AdapterExportJson();
         adapter.escrever(this.usuarioLogado, "INCLUSAO", null);
+        adapter = new AdapterExportCsv();
+        adapter.escrever(this.usuarioLogado, "INCLUSAO", null);
     }
 
     public void editar(Usuario usuario) throws IOException {
 
         new ManterUsuarioEdicaoState(this, usuario);
         adapter = new AdapterExportJson();
+        adapter.escrever(this.usuarioLogado, "EDICAO", usuario.getNome());
+        adapter = new AdapterExportCsv();
         adapter.escrever(this.usuarioLogado, "EDICAO", usuario.getNome());
     }
 
