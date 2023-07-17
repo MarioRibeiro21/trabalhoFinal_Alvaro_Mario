@@ -18,6 +18,7 @@ import com.mycompany.trabalhofinal.log.IAdapterExport;
 import com.mycompany.trabalhofinal.model.Usuario;
 import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioVisualizacaoState;
 import com.mycompany.trabalhofinal.view.BuscarUsuarioView;
+import javax.swing.ButtonGroup;
 
 public class BuscarUsuarioPresenter {
 
@@ -28,12 +29,12 @@ public class BuscarUsuarioPresenter {
     private IAdapterExport adapter;
     private NotificacaoDAO notificacaoDAO;
 
-    public BuscarUsuarioPresenter(JDesktopPane desktop, Usuario usuario) throws IOException, Exception {
+    public BuscarUsuarioPresenter(JDesktopPane desktop, Usuario usuario, ButtonGroup log) throws IOException, Exception {
         this.usuarioLogado = usuario;
-        init(desktop);
+        init(desktop, log);
     }
 
-    private void init(JDesktopPane desktop) throws Exception {
+    private void init(JDesktopPane desktop, ButtonGroup log) throws Exception {
 
         buscarUsuarioView = new BuscarUsuarioView();
         usuarioDAO = new UsuarioDAO();
@@ -50,7 +51,7 @@ public class BuscarUsuarioPresenter {
 
         buscarUsuarioView.getjBtnNovo().addActionListener((e) -> {
             try {
-                cadastrar(desktop);
+                cadastrar(desktop, log);
             } catch (IOException ex) {
                 Logger.getLogger(BuscarUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
             } 
@@ -58,7 +59,7 @@ public class BuscarUsuarioPresenter {
 
         buscarUsuarioView.getjBtnVisualizar().addActionListener((e) -> {
             try {
-                visualizar(desktop);
+                visualizar(desktop, log);
             } catch (Exception ex) {
                 Logger.getLogger(BuscarUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -66,7 +67,7 @@ public class BuscarUsuarioPresenter {
 
         buscarUsuarioView.getjEditar2().addActionListener((e) -> {
             try {
-                editar(desktop);
+                editar(desktop, log);
                 
             } catch (Exception ex) {
                 Logger.getLogger(BuscarUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,7 +76,7 @@ public class BuscarUsuarioPresenter {
         
         buscarUsuarioView.getjExcluir().addActionListener((e) ->{
              try {
-                excluir();
+                excluir(log);
             } catch (Exception ex) {
                 Logger.getLogger(BuscarUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -116,11 +117,11 @@ public class BuscarUsuarioPresenter {
         loadTable();
     }
 
-    private void cadastrar(JDesktopPane desktop) throws IOException {
-        new ManterUsuarioPresenter(desktop, null, false, this.usuarioLogado);
+    private void cadastrar(JDesktopPane desktop, ButtonGroup log) throws IOException {
+        new ManterUsuarioPresenter(desktop, null, false, this.usuarioLogado, log);
     }
 
-    private void visualizar(JDesktopPane desktop) throws Exception {
+    private void visualizar(JDesktopPane desktop, ButtonGroup log) throws Exception {
 
         var linha = buscarUsuarioView.getjTable().getSelectedRow();
         if (linha == -1) {
@@ -128,27 +129,34 @@ public class BuscarUsuarioPresenter {
         } else {
             var id = Integer.valueOf(buscarUsuarioView.getjTable().getValueAt(linha, 0).toString());
             var usuario = usuarioDAO.getById(id);
-            new ManterUsuarioVisualizacaoState(new ManterUsuarioPresenter(desktop, usuario, false, this.usuarioLogado));
-            adapter = new AdapterExportJson();
-            adapter.escrever(this.usuarioLogado, "VISUALIZACAO", usuario.getNome());
-            adapter = new AdapterExportCsv();
+            new ManterUsuarioVisualizacaoState(new ManterUsuarioPresenter(desktop, usuario, false, this.usuarioLogado, log));
+            
+            switch(log.getSelection().getActionCommand()){
+                case "CSV":
+                    adapter = new AdapterExportCsv();
+                    break;
+
+                case "JSON":
+                    adapter = new AdapterExportJson();
+                    break;
+            }
             adapter.escrever(this.usuarioLogado, "VISUALIZACAO", usuario.getNome());
         }
     }
 
-    private void editar(JDesktopPane desktop) throws Exception {
+    private void editar(JDesktopPane desktop, ButtonGroup log) throws Exception {
         var linha = buscarUsuarioView.getjTable().getSelectedRow();
         if (linha == -1) {
             JOptionPane.showMessageDialog(buscarUsuarioView, "É necessário selecionar uma linha primeiro");
         } else {
             var id = Integer.valueOf(buscarUsuarioView.getjTable().getValueAt(linha, 0).toString());
             var usuario = usuarioDAO.getById(id);
-            new ManterUsuarioPresenter(desktop, usuario, false, this.usuarioLogado);
+            new ManterUsuarioPresenter(desktop, usuario, false, this.usuarioLogado, log);
         }
         buscar();
     }
 
-    private void excluir() throws IOException, Exception{
+    private void excluir(ButtonGroup log) throws IOException, Exception{
          var linha = buscarUsuarioView.getjTable().getSelectedRow();
         if (linha == -1) {
             JOptionPane.showMessageDialog(buscarUsuarioView, "É necessário selecionar uma linha primeiro");
@@ -156,9 +164,16 @@ public class BuscarUsuarioPresenter {
             var id = Integer.valueOf(buscarUsuarioView.getjTable().getValueAt(linha, 0).toString());
             var nome = usuarioDAO.getById(id).getNome();
             usuarioDAO.delete(id);
-            adapter = new AdapterExportJson();
-            adapter.escrever(this.usuarioLogado, "EXCLUSAO", nome);
-            adapter = new AdapterExportCsv();
+            
+            switch(log.getSelection().getActionCommand()){
+                case "CSV":
+                    adapter = new AdapterExportCsv();
+                    break;
+
+                case "JSON":
+                    adapter = new AdapterExportJson();
+                    break;
+            }            
             adapter.escrever(this.usuarioLogado, "EXCLUSAO", nome);
             JOptionPane.showMessageDialog( buscarUsuarioView, "Usuário excluído com sucesso!" );
              buscar();

@@ -20,12 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.JDesktopPane;
 
 /**
  *
- * @author Mario
+ * @author Mario e Álvaro
  */
+
 public class ManterUsuarioPresenter implements IObservable {
 
     private ManterUsuarioView cadastroView;
@@ -35,17 +37,17 @@ public class ManterUsuarioPresenter implements IObservable {
     private IAdapterExport adapter;
     private Usuario usuarioLogado;
 
-    public ManterUsuarioPresenter(JDesktopPane desktop, Usuario usuario, boolean first, Usuario usuarioLogado) {
+    public ManterUsuarioPresenter(JDesktopPane desktop, Usuario usuario, boolean first, Usuario usuarioLogado, ButtonGroup log) {
         observers = new ArrayList<>();
         this.usuarioLogado = usuarioLogado;
-        init(desktop, usuario, first, usuarioLogado);
+        init(desktop, usuario, first, usuarioLogado, log);
     }
 
     public ManterUsuarioView getCadastroView() {
         return cadastroView;
     }
 
-    public void init(JDesktopPane desktop, Usuario usuario, boolean first, Usuario usuarioLogado) {
+    public void init(JDesktopPane desktop, Usuario usuario, boolean first, Usuario usuarioLogado, ButtonGroup log) {
 
         cadastroView = new ManterUsuarioView();
         desktop.add(cadastroView);
@@ -80,16 +82,18 @@ public class ManterUsuarioPresenter implements IObservable {
         cadastroView.setVisible(true);
 
         cadastroView.getjBtnCadastrar().addActionListener((e) -> {
-            if (usuario == null)
-				try {
-                incluir();
-            } catch (IOException ex) {
-                Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
-            } else
-				try {
-                editar(usuario);
-            } catch (IOException ex) {
-                Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
+            if (usuario == null){
+                try {
+                    incluir(log);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }else{
+		try {
+                    editar(usuario, log);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManterUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -98,20 +102,34 @@ public class ManterUsuarioPresenter implements IObservable {
         });
     }
 
-    public void incluir() throws IOException {
+    public void incluir(ButtonGroup log) throws IOException {
         new ManterUsuarioCadastroState(this);
-        adapter = new AdapterExportJson();
+        
+        switch(log.getSelection().getActionCommand()){
+            case "CSV":
+                adapter = new AdapterExportCsv();
+                break;
+            
+            case "JSON":
+                adapter = new AdapterExportJson();
+                break;
+        }
         adapter.escrever(this.usuarioLogado, "INCLUSAO", null);
-        adapter = new AdapterExportCsv();
-        adapter.escrever(this.usuarioLogado, "INCLUSAO", null);
+    
     }
 
-    public void editar(Usuario usuario) throws IOException {
-
+    public void editar(Usuario usuario, ButtonGroup log) throws IOException {
+        
         new ManterUsuarioEdicaoState(this, usuario);
-        adapter = new AdapterExportJson();
-        adapter.escrever(this.usuarioLogado, "EDICAO", usuario.getNome());
-        adapter = new AdapterExportCsv();
+        switch(log.getSelection().getActionCommand()){
+            case "CSV":
+                adapter = new AdapterExportCsv();
+                break;
+            
+            case "JSON":
+                adapter = new AdapterExportJson();
+                break;
+        }
         adapter.escrever(this.usuarioLogado, "EDICAO", usuario.getNome());
     }
 

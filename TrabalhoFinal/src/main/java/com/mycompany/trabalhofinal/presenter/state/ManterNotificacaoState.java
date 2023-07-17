@@ -9,7 +9,7 @@ import com.mycompany.trabalhofinal.presenter.ManterNotificacaoPresenter;
 
 /**
  *
- * @author Mario
+ * @author Mario e Álvaro
  */
 public abstract class ManterNotificacaoState {
 

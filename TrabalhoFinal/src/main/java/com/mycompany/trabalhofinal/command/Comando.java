@@ -8,7 +8,7 @@ import com.mycompany.trabalhofinal.model.Notificacao;
 
 /**
  *
- * @author Mario
+ * @author Mario e Álvaro
  */
 public abstract class Comando {
     

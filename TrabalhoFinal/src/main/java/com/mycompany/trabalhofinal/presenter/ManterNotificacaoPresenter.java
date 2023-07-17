@@ -19,6 +19,7 @@ import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 
 import javax.swing.JDesktopPane;
@@ -36,13 +37,13 @@ public class ManterNotificacaoPresenter implements IObservable {
     private ManterNotificacaoState estado;
     private Usuario usuarioLogado;
 
-    public ManterNotificacaoPresenter(JDesktopPane desktop, Notificacao notificacao, ManterNotificacaoState estado, Usuario usuarioLogado) {
+    public ManterNotificacaoPresenter(JDesktopPane desktop, Notificacao notificacao, ManterNotificacaoState estado, Usuario usuarioLogado, ButtonGroup log) {
         this.notificacao = notificacao;
         this.usuarioLogado = usuarioLogado;
         view = new ManterNotificacaoView();
     }
 
-    public void init(JDesktopPane desktop, Notificacao notificacao) throws Exception {
+    public void init(JDesktopPane desktop, Notificacao notificacao, ButtonGroup log) throws Exception {
 
         dao = new NotificacaoDAO();
 
@@ -61,7 +62,7 @@ public class ManterNotificacaoPresenter implements IObservable {
 
         view.getjBtenviar().addActionListener((e) -> {
             try {
-                enviar();
+                enviar(log);
             } catch (Exception ex) {
                 Logger.getLogger(ManterNotificacaoPresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -71,7 +72,7 @@ public class ManterNotificacaoPresenter implements IObservable {
         });
     }
 
-    private void enviar() throws Exception {
+    private void enviar(ButtonGroup log) throws Exception {
         var mensagem = view.getjTmensagem().getText();
         Usuario usuario = (Usuario) view.getjComboBox1().getSelectedItem();
 
@@ -85,8 +86,15 @@ public class ManterNotificacaoPresenter implements IObservable {
         dao.insert(new Notificacao(usuario, mensagem));
 
         IAdapterExport adapter = new AdapterExportJson();
-        adapter.escrever(usuarioLogado, "ENVIO_MENSAGEM", usuario.getNome());
-        adapter = new AdapterExportCsv();
+        switch(log.getSelection().getActionCommand()){
+            case "CSV":
+                adapter = new AdapterExportCsv();
+                break;
+            
+            case "JSON":
+                adapter = new AdapterExportJson();
+                break;
+        }        
         adapter.escrever(this.usuarioLogado, "ENVIO_MENSAGEM", usuario.getNome());
 
         JOptionPane.showMessageDialog(view, "mensagem enviada com sucesso!");

@@ -8,12 +8,13 @@ import com.mycompany.trabalhofinal.view.LoginView;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ButtonGroup;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Mario
+ * @author Mario e Álvaro
  */
 public class LoginPresenter implements IObservable {
     
@@ -23,12 +24,12 @@ public class LoginPresenter implements IObservable {
     
     
 
-    public LoginPresenter(JDesktopPane desktop) {
+    public LoginPresenter(JDesktopPane desktop, ButtonGroup log) {
         observers = new ArrayList<>();
-        init(desktop);
+        init(desktop, log);
     }
     
-    private void init(JDesktopPane desktop){
+    private void init(JDesktopPane desktop, ButtonGroup log){
         
         loginView = new LoginView();
         usuarioDAO = new UsuarioDAO();
@@ -41,7 +42,7 @@ public class LoginPresenter implements IObservable {
 
 
         loginView.getBtnCadastrar().addActionListener((e) -> {
-            cadastrar(desktop);
+            cadastrar(desktop, log);
         });
         
         loginView.getBtnLogin().addActionListener((e) -> {
@@ -50,12 +51,12 @@ public class LoginPresenter implements IObservable {
     }
     
     
-    private void cadastrar(JDesktopPane desktop) {
+    private void cadastrar(JDesktopPane desktop, ButtonGroup log) {
         try {
             if (usuarioDAO.findAll().isEmpty())
-                new ManterUsuarioPresenter(desktop, null, true, null);
+                new ManterUsuarioPresenter(desktop, null, true, null, log);
             else
-                new ManterUsuarioPresenter(desktop, null, false, null);
+                new ManterUsuarioPresenter(desktop, null, false, null, log);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(loginView, "Erro ao cadastrar: " + e.getMessage());
         }

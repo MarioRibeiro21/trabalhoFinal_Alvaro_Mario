@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Mario
+ * @author Mario e Álvaro
  */
 public class TrabalhoFinal {
 

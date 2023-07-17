@@ -1,5 +1,6 @@
 package com.mycompany.trabalhofinal.view;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -25,6 +26,7 @@ public class PrincipalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         setTitle("Trabalho final");
         jDesktopPane = new javax.swing.JDesktopPane();
         lblUsuarioLogado = new javax.swing.JLabel();
@@ -36,9 +38,12 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBuscar = new javax.swing.JMenuItem();
         jMenuAcao = new javax.swing.JMenu();
         jMenuAlterar1 = new javax.swing.JMenuItem();
+        jMenuLog = new javax.swing.JMenu();
+        jRadioCSVLog = new javax.swing.JRadioButtonMenuItem();
+        jRadioJSONLog = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sofware para acesso a Bancos de Notificações");
+        setTitle("Sofware para acesso a Bancos de Imagens");
         setResizable(false);
 
         jDesktopPane.setBackground(new java.awt.Color(51, 51, 51));
@@ -83,6 +88,26 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar.add(jMenuAcao);
 
+        jMenuLog.setText("Configurações");
+
+        buttonGroup1.add(jRadioCSVLog);
+        jRadioCSVLog.setSelected(true);
+        jRadioCSVLog.setText("CSV Log");
+        jRadioCSVLog.setActionCommand("CSV");
+        jRadioCSVLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioCSVLogActionPerformed(evt);
+            }
+        });
+        jMenuLog.add(jRadioCSVLog);
+
+        buttonGroup1.add(jRadioJSONLog);
+        jRadioJSONLog.setText("JSON Log");
+        jRadioJSONLog.setActionCommand("JSON");
+        jMenuLog.add(jRadioJSONLog);
+
+        jMenuBar.add(jMenuLog);
+
         setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,6 +139,10 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuBuscarActionPerformed
+
+    private void jRadioCSVLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCSVLogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioCSVLogActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,16 +198,21 @@ public class PrincipalView extends javax.swing.JFrame {
         this.jMenuAlterar1 = jMenuAlterar1;
     }
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNotificacao;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JMenu jMenuAcao;
     private javax.swing.JMenuItem jMenuAlterar1;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuBuscar;
     private javax.swing.JMenuItem jMenuCadastrar;
+    private javax.swing.JMenu jMenuLog;
     private javax.swing.JMenu jMenuUsuario;
+    private javax.swing.JRadioButtonMenuItem jRadioCSVLog;
+    private javax.swing.JRadioButtonMenuItem jRadioJSONLog;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblUsuarioLogado;
     // End of variables declaration//GEN-END:variables
@@ -186,6 +220,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
     public JDesktopPane getjDesktopPane() {
         return jDesktopPane;
+    }
+
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
     }
 
     public JMenuItem getjMenuCadastrar() {

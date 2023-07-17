@@ -34,7 +34,7 @@ public class PrincipalPresenter implements IObserver {
         stateOFF();
         
         if(this.usuario == null)
-            new LoginPresenter(principalView.getjDesktopPane()).addObserver(this);
+            new LoginPresenter(principalView.getjDesktopPane(), principalView.getButtonGroup1()).addObserver(this);
         
         
         principalView.getjMenuCadastrar().addActionListener((e) -> {
@@ -77,15 +77,15 @@ public class PrincipalPresenter implements IObserver {
     }
     
     private void cadastrar() throws IOException {
-        new ManterUsuarioPresenter(principalView.getjDesktopPane(), null, false, this.usuario);   
+        new ManterUsuarioPresenter(principalView.getjDesktopPane(), null, false, this.usuario, principalView.getButtonGroup1());   
     }
     
     private void buscar() throws IOException, Exception {  
-        new BuscarUsuarioPresenter(principalView.getjDesktopPane(), this.usuario);       
+        new BuscarUsuarioPresenter(principalView.getjDesktopPane(), this.usuario, principalView.getButtonGroup1());       
     }
     
     private void alterarDados()throws IOException{
-          new ManterUsuarioPresenter(principalView.getjDesktopPane() , usuario, false, this.usuario);
+          new ManterUsuarioPresenter(principalView.getjDesktopPane() , usuario, false, this.usuario, principalView.getButtonGroup1());
     } 
     
     
@@ -115,7 +115,7 @@ public class PrincipalPresenter implements IObserver {
     }
     
     private void abrirNotificacoes() throws Exception{
-        new NotificacaoPresenter (principalView.getjDesktopPane(), usuario);
+        new NotificacaoPresenter (principalView.getjDesktopPane(), usuario, principalView.getButtonGroup1());
     }
 
     @Override
