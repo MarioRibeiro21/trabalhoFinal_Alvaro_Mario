@@ -33,8 +33,8 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         jBtnFechar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
-        jBtnPermissao = new javax.swing.JButton();
-        jEditar1 = new javax.swing.JButton();
+        jExcluir = new javax.swing.JButton();
+        jEditar2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(248, 248, 248));
         setClosable(true);
@@ -57,10 +57,20 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         jBtnNovo.setBackground(new java.awt.Color(248, 248, 248));
         jBtnNovo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jBtnNovo.setText("Novo");
+        jBtnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnNovoActionPerformed(evt);
+            }
+        });
 
         jBtnVisualizar.setBackground(new java.awt.Color(248, 248, 248));
         jBtnVisualizar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jBtnVisualizar.setText("Visualizar");
+        jBtnVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnVisualizarActionPerformed(evt);
+            }
+        });
 
         jBtnFechar.setBackground(new java.awt.Color(248, 248, 248));
         jBtnFechar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -96,13 +106,13 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable);
 
-        jBtnPermissao.setBackground(new java.awt.Color(248, 248, 248));
-        jBtnPermissao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jBtnPermissao.setText("Permissões");
+        jExcluir.setBackground(new java.awt.Color(248, 248, 248));
+        jExcluir.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jExcluir.setText("Excluir");
 
-        jEditar1.setBackground(new java.awt.Color(248, 248, 248));
-        jEditar1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jEditar1.setText("Editar");
+        jEditar2.setBackground(new java.awt.Color(248, 248, 248));
+        jEditar2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jEditar2.setText("Editar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,30 +122,30 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbxCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBtnBuscar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
-                                .addGap(87, 87, 87)))
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbxCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBtnBuscar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addComponent(jBtnNovo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(56, 56, 56)
                         .addComponent(jBtnVisualizar)
-                        .addGap(12, 12, 12)
-                        .addComponent(jEditar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jEditar2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(jExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnPermissao)
-                        .addGap(50, 50, 50))))
+                        .addComponent(jBtnFechar)
+                        .addGap(66, 66, 66))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,14 +157,15 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
                     .addComponent(cmbxCampo)
                     .addComponent(jBtnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnNovo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jBtnPermissao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtnVisualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBtnFechar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jEditar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jEditar2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -165,15 +176,23 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnFecharActionPerformed
 
+    private void jBtnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVisualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnVisualizarActionPerformed
+
+    private void jBtnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNovoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnNovoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbxCampo;
     private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnFechar;
     private javax.swing.JButton jBtnNovo;
-    private javax.swing.JButton jBtnPermissao;
     private javax.swing.JButton jBtnVisualizar;
-    private javax.swing.JButton jEditar1;
+    private javax.swing.JButton jEditar2;
+    private javax.swing.JButton jExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
@@ -208,12 +227,18 @@ public class BuscarUsuarioView extends javax.swing.JInternalFrame {
         return jTable;
     }
 
-    public JButton getjBtnPermissao() {
-        return jBtnPermissao;
-    }    
+    public JButton getjEditar2() {
+        return jEditar2;
+    }
 
-    public JButton getjEditar1() {
-        return jEditar1;
+
+
+    public JButton getjExcluir() {
+        return jExcluir;
+    }
+
+    public void setjExcluir(JButton jExcluir) {
+        this.jExcluir = jExcluir;
     }
     
     

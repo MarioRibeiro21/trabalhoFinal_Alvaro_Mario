@@ -6,6 +6,9 @@ package com.mycompany.trabalhofinal.presenter;
 
 import com.mycompany.trabalhofinal.DAO.implement.NotificacaoDAO;
 import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
+import com.mycompany.trabalhofinal.log.AdapterExportCsv;
+import com.mycompany.trabalhofinal.log.AdapterExportJson;
+import com.mycompany.trabalhofinal.log.IAdapterExport;
 import com.mycompany.trabalhofinal.model.Notificacao;
 import com.mycompany.trabalhofinal.model.Usuario;
 import com.mycompany.trabalhofinal.observer.IObservable;
@@ -31,18 +34,18 @@ public class ManterNotificacaoPresenter implements IObservable {
     private NotificacaoDAO dao;
     private Notificacao notificacao;
     private ManterNotificacaoState estado;
+    private Usuario usuarioLogado;
 
-    public ManterNotificacaoPresenter(JDesktopPane desktop, Notificacao notificacao, ManterNotificacaoState estado) {
-        this.notificacao=notificacao;
+    public ManterNotificacaoPresenter(JDesktopPane desktop, Notificacao notificacao, ManterNotificacaoState estado, Usuario usuarioLogado) {
+        this.notificacao = notificacao;
+        this.usuarioLogado = usuarioLogado;
         view = new ManterNotificacaoView();
     }
 
     public void init(JDesktopPane desktop, Notificacao notificacao) throws Exception {
-        
-        
+
         dao = new NotificacaoDAO();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-                
+
         desktop.add(view);
 
         view.setLocation((desktop.getWidth() - view.getWidth()) / 2, (desktop.getHeight() - view.getHeight()) / 2);
@@ -71,18 +74,23 @@ public class ManterNotificacaoPresenter implements IObservable {
     private void enviar() throws Exception {
         var mensagem = view.getjTmensagem().getText();
         Usuario usuario = (Usuario) view.getjComboBox1().getSelectedItem();
-        
-        if(mensagem == null || mensagem.isEmpty()){
-            throw new RuntimeException( "Mensagem vazia!" );
+
+        if (mensagem == null || mensagem.isEmpty()) {
+            throw new RuntimeException("Mensagem vazia!");
         }
-         if(usuario == null){
-            throw new RuntimeException( "Usuário não selecionado!" );
+        if (usuario == null) {
+            throw new RuntimeException("Usuário não selecionado!");
         }
-        
-      dao.insert(new Notificacao( usuario, mensagem));
-      
-      JOptionPane.showMessageDialog( view, "mensagem enviada com sucesso!" );   
-        
+
+        dao.insert(new Notificacao(usuario, mensagem));
+
+        IAdapterExport adapter = new AdapterExportJson();
+        adapter.escrever(usuarioLogado, "ENVIO_MENSAGEM", usuario.getNome());
+        adapter = new AdapterExportCsv();
+        adapter.escrever(this.usuarioLogado, "ENVIO_MENSAGEM", usuario.getNome());
+
+        JOptionPane.showMessageDialog(view, "mensagem enviada com sucesso!");
+
     }
 
     private void cancelar() {
@@ -104,8 +112,6 @@ public class ManterNotificacaoPresenter implements IObservable {
     public void setEstado(ManterNotificacaoState estado) {
         this.estado = estado;
     }
-    
-    
 
     @Override
     public void addObserver(IObserver observer) {

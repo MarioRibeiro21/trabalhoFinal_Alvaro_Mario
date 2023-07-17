@@ -4,11 +4,9 @@
  */
 package com.mycompany.trabalhofinal.presenter;
 
-import com.mycompany.trabalhofinal.DAO.implement.NotificacaoDAO;
-import com.mycompany.trabalhofinal.DAO.implement.UsuarioDAO;
+
 import com.mycompany.trabalhofinal.model.Usuario;
 import com.mycompany.trabalhofinal.observer.IObserver;
-import com.mycompany.trabalhofinal.presenter.state.ManterUsuarioEdicaoState;
 import com.mycompany.trabalhofinal.view.PrincipalView;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -22,8 +20,6 @@ import java.util.logging.Logger;
 public class PrincipalPresenter implements IObserver {
 
     private PrincipalView principalView;
-    private UsuarioDAO usuarioDAO;
-    private NotificacaoDAO notificacaoDAO;
     private Usuario usuario = null;
     
     public PrincipalPresenter() throws IOException {
@@ -33,7 +29,6 @@ public class PrincipalPresenter implements IObserver {
     private void init(){
         
         principalView = new PrincipalView();
-        usuarioDAO = new UsuarioDAO();
         principalView.setVisible(true);
         
         stateOFF();
@@ -54,6 +49,8 @@ public class PrincipalPresenter implements IObserver {
             try {
                 buscar();
             } catch (IOException ex) {
+                Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
                 Logger.getLogger(PrincipalPresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }); 
@@ -80,15 +77,15 @@ public class PrincipalPresenter implements IObserver {
     }
     
     private void cadastrar() throws IOException {
-        new ManterUsuarioPresenter(principalView.getjDesktopPane(), null, false, true);   
+        new ManterUsuarioPresenter(principalView.getjDesktopPane(), null, false, this.usuario);   
     }
     
-    private void buscar() throws IOException {  
-        new BuscarUsuarioPresenter(principalView.getjDesktopPane());       
+    private void buscar() throws IOException, Exception {  
+        new BuscarUsuarioPresenter(principalView.getjDesktopPane(), this.usuario);       
     }
     
     private void alterarDados()throws IOException{
-          new ManterUsuarioPresenter(principalView.getjDesktopPane() , usuario, false, usuario.isAdimin());
+          new ManterUsuarioPresenter(principalView.getjDesktopPane() , usuario, false, this.usuario);
     } 
     
     
@@ -118,7 +115,7 @@ public class PrincipalPresenter implements IObserver {
     }
     
     private void abrirNotificacoes() throws Exception{
-        new NotificacaoPresenter (principalView.getjDesktopPane(), usuario.getId(), usuario.isAdimin());
+        new NotificacaoPresenter (principalView.getjDesktopPane(), usuario);
     }
 
     @Override
@@ -138,5 +135,13 @@ public class PrincipalPresenter implements IObserver {
         }
         
         
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
