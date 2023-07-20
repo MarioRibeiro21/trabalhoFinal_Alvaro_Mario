@@ -162,6 +162,10 @@ public class BuscarUsuarioPresenter {
             JOptionPane.showMessageDialog(buscarUsuarioView, "É necessário selecionar uma linha primeiro");
         } else {
             var id = Integer.valueOf(buscarUsuarioView.getjTable().getValueAt(linha, 0).toString());
+            if(id == usuarioLogado.getId()){
+                 JOptionPane.showMessageDialog(buscarUsuarioView, "Você não pode se auto deletar");
+                 return;
+            }
             var nome = usuarioDAO.getById(id).getNome();
             usuarioDAO.delete(id);
             
