@@ -28,6 +28,7 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTnotificacoes = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jatualizarTela = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(248, 248, 248));
         setClosable(true);
@@ -79,6 +80,15 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Suas notificações:");
 
+        jatualizarTela.setBackground(new java.awt.Color(248, 248, 248));
+        jatualizarTela.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jatualizarTela.setText("Atualizar Tela");
+        jatualizarTela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jatualizarTelaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,25 +97,29 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(99, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jBnovaNotificacao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBvisualizarNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100)
+                                .addComponent(jatualizarTela, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(99, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jatualizarTela, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -125,6 +139,10 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnFecharActionPerformed
 
+    private void jatualizarTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jatualizarTelaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jatualizarTelaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBnovaNotificacao;
@@ -133,6 +151,7 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTnotificacoes;
+    private javax.swing.JButton jatualizarTela;
     // End of variables declaration//GEN-END:variables
 
     public JButton getjBvisualizarNotificacao() {
@@ -147,6 +166,10 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
         return jTnotificacoes;
     }
 
+    public JButton getjBtnFechar() {
+        return jBtnFechar;
+    }
+
     public void setjTnotificacoes(JTable jTnotificacoes) {
         this.jTnotificacoes = jTnotificacoes;
     }
@@ -157,6 +180,10 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
 
     public void setjBnovaNotificacao(JButton jBnovaNotificacao) {
         this.jBnovaNotificacao = jBnovaNotificacao;
+    }
+
+    public JButton getJatualizarTela() {
+        return jatualizarTela;
     }
 
 

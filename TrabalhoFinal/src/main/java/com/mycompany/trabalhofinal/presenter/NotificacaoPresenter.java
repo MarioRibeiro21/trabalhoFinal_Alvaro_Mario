@@ -70,6 +70,18 @@ public class NotificacaoPresenter {
                 Logger.getLogger(BuscarUsuarioPresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+        view.getJatualizarTela().addActionListener((e)->{
+            try {
+                buscarNotificacoes(usuarioLogado.getId());
+            } catch (Exception ex) {
+                Logger.getLogger(NotificacaoPresenter.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        view.getjBtnFechar().addActionListener((e)->{
+            cancelar();
+        });
 
     }
 
@@ -122,6 +134,10 @@ public class NotificacaoPresenter {
         setNotificacoes(dao.getAllByIdUsuario(idUsuarioLogado));
 
         loadTable();
+    }
+    
+    private void cancelar(){
+        view.dispose();
     }
 
     private void loadTable() throws Exception {
