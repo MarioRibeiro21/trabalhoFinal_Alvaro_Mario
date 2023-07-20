@@ -43,7 +43,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jRadioJSONLog = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sofware para acesso a Bancos de Imagens");
+        setTitle("Sofware para acesso a Bancos de Notificações");
         setResizable(false);
 
         jDesktopPane.setBackground(new java.awt.Color(51, 51, 51));

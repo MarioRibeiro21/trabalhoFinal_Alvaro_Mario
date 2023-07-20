@@ -33,7 +33,7 @@ public class NotificacaoView extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(248, 248, 248));
         setClosable(true);
         setIconifiable(true);
-        setTitle("Gerenciar Usuários");
+        setTitle("Gerenciar Notificação");
         setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         jBnovaNotificacao.setBackground(new java.awt.Color(248, 248, 248));
