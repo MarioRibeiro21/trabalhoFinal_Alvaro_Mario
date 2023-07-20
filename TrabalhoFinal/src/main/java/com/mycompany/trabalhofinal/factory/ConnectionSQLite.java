@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class ConnectionSQLite {
     
-    private static final String URL = "jdbc:sqlite:src/main/java/com/mycompany/trabalhofinal/DAO/db/gerenciadorLogin.db";
+    private static final String URL = "jdbc:sqlite:src/main/java/com/mycompany/trabalhofinal/DAO/gerenciadorLogin.db";
 
 	public static Connection connect() throws SQLException {
 
